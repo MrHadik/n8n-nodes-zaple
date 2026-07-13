@@ -16,7 +16,7 @@ Decisions made during brainstorming:
 
 | Decision | Choice |
 |---|---|
-| API coverage | Full — all 5 resource areas (~24 operations) |
+| API coverage | Full — all 5 resource areas (28 operations) |
 | Trigger node | Yes — webhook trigger for Zaple events |
 | Distribution | npm publish + built to qualify for n8n **verification** |
 | Node style | **Declarative** (routing metadata) + `preSend` hooks for API quirks |
@@ -221,7 +221,7 @@ so the node follows n8n's established manual pattern (per core ChargebeeTrigger)
 
 ## 9. Success criteria
 
-- All 24 operations + trigger work against the live Zaple API.
+- All 28 operations + trigger work against the live Zaple API.
 - `n8n-node lint` and `@n8n/scan-community-package` pass with zero errors.
 - Package installs cleanly from npm on Hardik's self-hosted n8n.
 - Verification submission requires no rework.
