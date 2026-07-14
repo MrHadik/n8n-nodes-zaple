@@ -2,6 +2,10 @@
 
 All notable changes to `n8n-nodes-zaple` are documented in this file.
 
+## 0.1.4 — 2026-07-14
+
+Re-release of 0.1.3 (no functional changes) to refresh registry caches.
+
 ## 0.1.3 — 2026-07-14
 
 ### Fixed
