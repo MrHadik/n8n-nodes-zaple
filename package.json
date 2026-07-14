@@ -1,0 +1,31 @@
+{
+	"name": "n8n-nodes-zaple",
+	"version": "0.1.0",
+	"description": "n8n community node for the Zaple.ai WhatsApp Business API",
+	"license": "MIT",
+	"homepage": "",
+	"keywords": ["n8n-community-node-package", "n8n", "zaple", "whatsapp"],
+	"author": { "name": "Hardik Chavda", "email": "hardik.chavda@pect.in" },
+	"repository": { "type": "git", "url": "" },
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"test": "vitest run",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": ["dist"],
+	"n8n": { "n8nNodesApiVersion": 1, "strict": true, "credentials": [], "nodes": [] },
+	"devDependencies": {
+		"@n8n/node-cli": "^0.23.0",
+		"eslint": "9.39.4",
+		"prettier": "3.8.3",
+		"release-it": "20.2.0",
+		"typescript": "5.9.3",
+		"vitest": "^3.2.4"
+	},
+	"peerDependencies": { "n8n-workflow": "*" }
+}
