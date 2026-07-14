@@ -1,6 +1,7 @@
 import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
 
 import { batchDescription } from './resources/batch';
+import { catalogDescription } from './resources/catalog';
 import { leadDescription } from './resources/lead';
 import { messageDescription } from './resources/message';
 import { templateDescription } from './resources/template';
@@ -42,6 +43,7 @@ export class Zaple implements INodeType {
 				noDataExpression: true,
 				options: [
 					{ name: 'Batch', value: 'batch' },
+					{ name: 'Catalog', value: 'catalog' },
 					{ name: 'Lead', value: 'lead' },
 					{ name: 'Message', value: 'message' },
 					{ name: 'Template', value: 'template' },
@@ -49,6 +51,7 @@ export class Zaple implements INodeType {
 				default: 'message',
 			},
 			...batchDescription,
+			...catalogDescription,
 			...leadDescription,
 			...messageDescription,
 			...templateDescription,
