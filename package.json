@@ -20,7 +20,7 @@
 	"files": ["dist"],
 	"n8n": {
 		"n8nNodesApiVersion": 1,
-		"strict": true,
+		"strict": false,
 		"credentials": [
 			"dist/credentials/ZapleApi.credentials.js",
 			"dist/credentials/ZapleLeadsApi.credentials.js"
