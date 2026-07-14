@@ -69,7 +69,10 @@ export const templateCreateFields: INodeProperties[] = [
 		name: 'buttonsJson',
 		type: 'json',
 		default: '',
-		description: 'JSON array of buttons, for example: [{"type":"quick_reply","replies":[{"text":"Yes"}]},{"type":"URL","websites":[{"text":"Visit","URL":"https://example.com"}]}]',
+		// Example JSON must show the API's lowercase 'url' type/key verbatim.
+		// eslint-disable-next-line n8n-nodes-base/node-param-description-miscased-url
+		description:
+			'JSON array of buttons, for example: [{"type":"quick_reply","replies":[{"text":"Yes"}]},{"type":"url","websites":[{"text":"Visit","url":"https://example.com"}]}]',
 		displayOptions: { show: { resource: ['template'], operation: ['create'] } },
 	},
 	{
