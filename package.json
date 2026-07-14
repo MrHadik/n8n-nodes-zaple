@@ -3,10 +3,10 @@
 	"version": "0.1.0",
 	"description": "n8n community node for the Zaple.ai WhatsApp Business API",
 	"license": "MIT",
-	"homepage": "",
+	"homepage": "https://github.com/MrHadik/n8n-nodes-zaple",
 	"keywords": ["n8n-community-node-package", "n8n", "zaple", "whatsapp"],
 	"author": { "name": "Hardik Chavda", "email": "hardik.chavda@pect.in" },
-	"repository": { "type": "git", "url": "" },
+	"repository": { "type": "git", "url": "https://github.com/MrHadik/n8n-nodes-zaple.git" },
 	"scripts": {
 		"build": "n8n-node build",
 		"build:watch": "tsc --watch",
