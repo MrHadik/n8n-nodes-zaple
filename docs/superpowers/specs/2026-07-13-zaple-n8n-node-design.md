@@ -188,7 +188,10 @@ so the node follows n8n's established manual pattern (per core ChargebeeTrigger)
   - *All Events* — `*` wildcard, emit raw payload
 - `webhook()` returns `{ workflowData: [this.helpers.returnJsonArray(...)] }` for matches, `{}` (200-ack, no workflow run) for non-matches.
 - No signature verification — Zaple doesn't document a signing secret. README will note this and recommend treating the URL as a secret.
-- The docs also show a simpler `{event, timestamp, data}` shape in one section; the trigger tolerates both shapes (if no `entry[]` envelope is present, pass the body through the event filter by its `event` key, else emit raw).
+- The docs also show a simpler `{event, timestamp, data}` shape in one section; payloads that are
+  not Meta-envelope shaped classify as `unknown` and are emitted only when **All Events** is
+  selected (documented in the README). If real Zaple traffic turns out to use the simple shape,
+  a mapping from its `event` key can be added in a minor release.
 
 ## 6. Error handling
 
