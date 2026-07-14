@@ -8,6 +8,8 @@ import {
 
 import { classifyZapleEvent } from './classifyEvent';
 
+// Trigger nodes have no execute(); advertising tool-usability would list a broken tool in the AI Agent picker.
+// eslint-disable-next-line @n8n/community-nodes/node-usable-as-tool
 export class ZapleTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Zaple Trigger',
@@ -17,7 +19,6 @@ export class ZapleTrigger implements INodeType {
 		version: 1,
 		description: 'Starts the workflow when Zaple webhook events arrive',
 		defaults: { name: 'Zaple Trigger' },
-		usableAsTool: true,
 		inputs: [],
 		outputs: [NodeConnectionTypes.Main],
 		webhooks: [
@@ -41,7 +42,7 @@ export class ZapleTrigger implements INodeType {
 				name: 'events',
 				type: 'multiOptions',
 				required: true,
-				default: [],
+				default: ['*'],
 				description: 'The Zaple webhook events that should start this workflow',
 				options: [
 					{

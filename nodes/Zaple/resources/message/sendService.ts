@@ -150,7 +150,7 @@ export const messageSendServiceFields: INodeProperties[] = [
 		default: '',
 		placeholder: 'e.g. 19.0760',
 		description:
-			'Latitude of the location. Note: the Zaple docs are ambiguous about flat vs nested location payloads — the flat body shape used here is verified against the live API in Task 12.',
+			'Latitude of the location. Note: the Zaple docs are ambiguous about flat vs nested location payloads — the flat body shape follows the cURL examples in the Zaple docs.',
 		displayOptions: {
 			show: { resource: ['message'], operation: ['sendService'], type: ['location'] },
 		},

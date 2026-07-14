@@ -20,7 +20,12 @@ jobs:
           node-version: 22
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Update npm (Trusted Publishing requires npm >= 11.5.1)
+        run: npm install -g npm@^11.5.1
+
       - run: npm ci
+
+      - run: npm test
 
       # Primary auth: npm Trusted Publisher (OIDC), configured on npmjs.com in Task 13 —
       # once this repo + this workflow file are registered there, NO token or secret is needed.
