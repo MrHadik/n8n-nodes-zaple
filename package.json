@@ -18,7 +18,15 @@
 		"prepublishOnly": "n8n-node prerelease"
 	},
 	"files": ["dist"],
-	"n8n": { "n8nNodesApiVersion": 1, "strict": true, "credentials": [], "nodes": [] },
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/ZapleApi.credentials.js",
+			"dist/credentials/ZapleLeadsApi.credentials.js"
+		],
+		"nodes": []
+	},
 	"devDependencies": {
 		"@n8n/node-cli": "^0.23.0",
 		"eslint": "9.39.4",
