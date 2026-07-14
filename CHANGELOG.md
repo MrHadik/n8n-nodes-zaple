@@ -2,6 +2,12 @@
 
 All notable changes to `n8n-nodes-zaple` are documented in this file.
 
+## 0.1.2 — 2026-07-14
+
+### Changed
+
+- Replaced the placeholder icon with the official Zaple logo (light + dark variants).
+
 ## 0.1.1 — 2026-07-14
 
 ### Fixed
