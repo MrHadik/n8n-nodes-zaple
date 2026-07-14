@@ -26,7 +26,8 @@
 			"dist/credentials/ZapleLeadsApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/Zaple/Zaple.node.js"
+			"dist/nodes/Zaple/Zaple.node.js",
+			"dist/nodes/ZapleTrigger/ZapleTrigger.node.js"
 		]
 	},
 	"devDependencies": {
