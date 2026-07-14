@@ -1,8 +1,3 @@
 import { config } from '@n8n/node-cli/eslint';
 
-export default [
-	...config,
-	{
-		ignores: ['tests/', 'dist/', 'node_modules/'],
-	},
-];
+export default config;
