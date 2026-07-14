@@ -1,0 +1,81 @@
+import type { INodeProperties } from 'n8n-workflow';
+
+export const templateListFields: INodeProperties[] = [
+	{
+		displayName: 'Filters',
+		name: 'filters',
+		type: 'collection',
+		placeholder: 'Add Filter',
+		default: {},
+		displayOptions: { show: { resource: ['template'], operation: ['list'] } },
+		options: [
+			{
+				displayName: 'Active',
+				name: 'active',
+				type: 'boolean',
+				default: true,
+				description: 'Whether to return only active (true) or only inactive (false) templates',
+				routing: { send: { type: 'query', property: 'active' } },
+			},
+			{
+				displayName: 'Category',
+				name: 'category',
+				type: 'options',
+				options: [
+					{ name: 'Authentication', value: 'AUTHENTICATION' },
+					{ name: 'Carousel', value: 'CAROUSEL' },
+					{ name: 'Marketing', value: 'MARKETING' },
+					{ name: 'Utility', value: 'UTILITY' },
+				],
+				default: 'MARKETING',
+				description: 'Return only templates in this category',
+				routing: { send: { type: 'query', property: 'category' } },
+			},
+			{
+				displayName: 'Favorite',
+				name: 'favorite',
+				type: 'boolean',
+				default: true,
+				description: 'Whether to return only templates marked as favorite',
+				routing: { send: { type: 'query', property: 'favorite' } },
+			},
+			{
+				displayName: 'Page',
+				name: 'page',
+				type: 'number',
+				default: 1,
+				description: 'Page number of the result set to return',
+				routing: { send: { type: 'query', property: 'page' } },
+			},
+			{
+				displayName: 'Per Page',
+				name: 'perPage',
+				type: 'number',
+				default: 50,
+				description: 'Number of templates to return per page',
+				routing: { send: { type: 'query', property: 'per_page' } },
+			},
+			{
+				displayName: 'Search',
+				name: 'search',
+				type: 'string',
+				default: '',
+				description: 'Free-text search over template names',
+				routing: { send: { type: 'query', property: 'search' } },
+			},
+			{
+				displayName: 'Status',
+				name: 'status',
+				type: 'options',
+				options: [
+					{ name: 'Approved', value: 'APPROVED' },
+					{ name: 'Pending', value: 'PENDING' },
+					{ name: 'Rejected', value: 'REJECTED' },
+				],
+				default: 'APPROVED',
+				description: 'Return only templates with this approval status',
+				routing: { send: { type: 'query', property: 'status' } },
+			},
+		],
+	},
+];

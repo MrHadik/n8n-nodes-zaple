@@ -1,0 +1,172 @@
+import type { INodeProperties } from 'n8n-workflow';
+
+export const leadSubmitFields: INodeProperties[] = [
+	{
+		displayName:
+			'This operation uses the separate Zaple Leads API credential (X-Zaple-Api-Key). At least one of Phone or Email is required.',
+		name: 'leadSubmitNotice',
+		type: 'notice',
+		default: '',
+		displayOptions: { show: { resource: ['lead'], operation: ['submit'] } },
+	},
+	{
+		displayName: 'Phone',
+		name: 'phone',
+		type: 'string',
+		default: '',
+		description: 'Phone number of the lead — at least one of Phone or Email must be provided',
+		displayOptions: { show: { resource: ['lead'], operation: ['submit'] } },
+		routing: { send: { type: 'body', property: 'phone' } },
+	},
+	{
+		displayName: 'Email',
+		name: 'email',
+		type: 'string',
+		placeholder: 'name@email.com',
+		default: '',
+		description: 'Email address of the lead — at least one of Phone or Email must be provided',
+		displayOptions: { show: { resource: ['lead'], operation: ['submit'] } },
+		routing: { send: { type: 'body', property: 'email' } },
+	},
+	{
+		displayName: 'Custom Fields Mode',
+		name: 'customFieldsMode',
+		type: 'options',
+		options: [
+			{ name: 'Fields Below', value: 'ui' },
+			{ name: 'JSON', value: 'json' },
+			{ name: 'None', value: 'none' },
+		],
+		default: 'none',
+		description: 'How the free-form custom fields are provided',
+		displayOptions: { show: { resource: ['lead'], operation: ['submit'] } },
+	},
+	{
+		displayName: 'Custom Fields',
+		name: 'customFieldsUi',
+		type: 'fixedCollection',
+		typeOptions: { multipleValues: true },
+		placeholder: 'Add Custom Field',
+		default: {},
+		description: 'Free-form key/value pairs stored on the lead as custom_fields',
+		displayOptions: {
+			show: { resource: ['lead'], operation: ['submit'], customFieldsMode: ['ui'] },
+		},
+		options: [
+			{
+				displayName: 'Field',
+				name: 'field',
+				values: [
+					{
+						displayName: 'Key',
+						name: 'key',
+						type: 'string',
+						default: '',
+						description: 'Name of the custom field',
+					},
+					{
+						displayName: 'Value',
+						name: 'value',
+						type: 'string',
+						default: '',
+						description: 'Value of the custom field',
+					},
+				],
+			},
+		],
+	},
+	{
+		displayName: 'Custom Fields (JSON)',
+		name: 'customFieldsJson',
+		type: 'json',
+		default: '{}',
+		description:
+			'JSON object of free-form key/value pairs, e.g. {"budget":"50k","city":"Rajkot"}',
+		displayOptions: {
+			show: { resource: ['lead'], operation: ['submit'], customFieldsMode: ['json'] },
+		},
+	},
+	{
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
+		placeholder: 'Add Field',
+		default: {},
+		displayOptions: { show: { resource: ['lead'], operation: ['submit'] } },
+		options: [
+			{
+				displayName: 'Campaign Name',
+				name: 'campaignName',
+				type: 'string',
+				default: '',
+				description: 'Name of the campaign the lead came from',
+				routing: { send: { type: 'body', property: 'campaign_name' } },
+			},
+			{
+				displayName: 'External Event ID',
+				name: 'externalEventId',
+				type: 'string',
+				default: '',
+				description:
+					'Idempotency key — repeat submissions with the same ID return the existing lead',
+				routing: { send: { type: 'body', property: 'external_event_id' } },
+			},
+			{
+				displayName: 'Full Name',
+				name: 'fullName',
+				type: 'string',
+				default: '',
+				description: 'Full name of the lead',
+				routing: { send: { type: 'body', property: 'full_name' } },
+			},
+			{
+				displayName: 'Message',
+				name: 'message',
+				type: 'string',
+				default: '',
+				description: 'Free-text message submitted by the lead',
+				routing: { send: { type: 'body', property: 'message' } },
+			},
+			{
+				displayName: 'Meta (JSON)',
+				name: 'metaJson',
+				type: 'json',
+				default: '',
+				description:
+					'JSON object of extra metadata stored with the lead, e.g. {"page_url":"https://…","form_id":"contact"}',
+			},
+			{
+				displayName: 'Source',
+				name: 'source',
+				type: 'string',
+				default: '',
+				description: 'Lead source identifier. Defaults to website_form server-side.',
+				routing: { send: { type: 'body', property: 'source' } },
+			},
+			{
+				displayName: 'UTM Campaign',
+				name: 'utmCampaign',
+				type: 'string',
+				default: '',
+				description: 'UTM campaign attribution value',
+				routing: { send: { type: 'body', property: 'utm_campaign' } },
+			},
+			{
+				displayName: 'UTM Medium',
+				name: 'utmMedium',
+				type: 'string',
+				default: '',
+				description: 'UTM medium attribution value',
+				routing: { send: { type: 'body', property: 'utm_medium' } },
+			},
+			{
+				displayName: 'UTM Source',
+				name: 'utmSource',
+				type: 'string',
+				default: '',
+				description: 'UTM source attribution value',
+				routing: { send: { type: 'body', property: 'utm_source' } },
+			},
+		],
+	},
+];
