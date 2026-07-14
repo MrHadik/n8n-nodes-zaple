@@ -73,6 +73,7 @@ export const messageSendServiceFields: INodeProperties[] = [
 		displayName: 'Media URL',
 		name: 'mediaUrl',
 		type: 'string',
+		required: true,
 		default: '',
 		description: 'Publicly accessible URL of the media file',
 		displayOptions: {
@@ -88,6 +89,7 @@ export const messageSendServiceFields: INodeProperties[] = [
 		displayName: 'Base64 Data',
 		name: 'base64Data',
 		type: 'string',
+		required: true,
 		default: '',
 		description:
 			'Base64-encoded content of the media file, e.g. {{ $binary.data.data }} from a previous node',
@@ -119,6 +121,7 @@ export const messageSendServiceFields: INodeProperties[] = [
 		displayName: 'Template ID',
 		name: 'templateId',
 		type: 'string',
+		required: true,
 		default: '',
 		description:
 			'Required for document messages: send-API identifier of a template configured with a document header',
