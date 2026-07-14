@@ -1,5 +1,7 @@
 import type { IAuthenticateGeneric, ICredentialType, INodeProperties, Icon } from 'n8n-workflow';
 
+// No credential test on purpose: the only Leads endpoint is a state-creating POST /api/v1/leads —
+// no safe read-only request exists to validate these credentials.
 // eslint-disable-next-line @n8n/community-nodes/credential-test-required
 export class ZapleLeadsApi implements ICredentialType {
 	name = 'zapleLeadsApi';
