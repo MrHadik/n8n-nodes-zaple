@@ -1,0 +1,15 @@
+name: Scan
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Scan published package (n8n community package security checks)
+        run: npx -y @n8n/scan-community-package n8n-nodes-zaple
