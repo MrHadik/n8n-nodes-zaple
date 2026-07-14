@@ -2,6 +2,14 @@
 
 All notable changes to `n8n-nodes-zaple` are documented in this file.
 
+## 0.1.3 — 2026-07-14
+
+### Fixed
+
+- Node icon rendered blank/stale in some n8n frontends: the 0.1.2 icon embedded the logo as a
+  raster image inside SVG, which icon sanitizers can strip. Icons are now true vector paths
+  (traced from the official logo) — smaller, sharper, and sanitizer-proof.
+
 ## 0.1.2 — 2026-07-14
 
 ### Changed
