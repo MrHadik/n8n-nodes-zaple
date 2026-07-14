@@ -1,6 +1,7 @@
 import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
 
 import { messageDescription } from './resources/message';
+import { templateDescription } from './resources/template';
 
 export class Zaple implements INodeType {
 	description: INodeTypeDescription = {
@@ -37,10 +38,14 @@ export class Zaple implements INodeType {
 				name: 'resource',
 				type: 'options',
 				noDataExpression: true,
-				options: [{ name: 'Message', value: 'message' }],
+				options: [
+					{ name: 'Message', value: 'message' },
+					{ name: 'Template', value: 'template' },
+				],
 				default: 'message',
 			},
 			...messageDescription,
+			...templateDescription,
 		],
 	};
 }
