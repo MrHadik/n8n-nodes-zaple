@@ -1,0 +1,31 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+permissions:
+  contents: read
+  id-token: write # lets the job mint the OIDC token npm uses for Trusted Publishing + provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci
+
+      # Primary auth: npm Trusted Publisher (OIDC), configured on npmjs.com in Task 13 —
+      # once this repo + this workflow file are registered there, NO token or secret is needed.
+      # Fallback ONLY if Trusted Publishing cannot be configured: create an npm automation
+      # token, save it as the repository secret NPM_TOKEN, and uncomment the env block below.
+      - run: npm run release
+        # env:
+        #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
