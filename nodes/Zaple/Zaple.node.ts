@@ -20,15 +20,18 @@ export class Zaple implements INodeType {
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [
+			// The routing engine resolves multi-credential nodes ONLY via an 'authentication'
+			// parameter matched against displayOptions.show.authentication (RoutingNode.prepareCredentials);
+			// resource-based scoping works in the editor but throws at execution time.
 			{
 				name: 'zapleApi',
 				required: true,
-				displayOptions: { show: { resource: ['message', 'template', 'batch', 'catalog'] } },
+				displayOptions: { show: { authentication: ['zapleApi'] } },
 			},
 			{
 				name: 'zapleLeadsApi',
 				required: true,
-				displayOptions: { show: { resource: ['lead'] } },
+				displayOptions: { show: { authentication: ['zapleLeadsApi'] } },
 			},
 		],
 		requestDefaults: {
@@ -49,6 +52,23 @@ export class Zaple implements INodeType {
 					{ name: 'Template', value: 'template' },
 				],
 				default: 'message',
+			},
+			// Hidden per-resource twins: exactly one is displayed for any resource value, so
+			// node.parameters.authentication always persists a static string the engine can match.
+			// A single expression default would make the editor render both credential fields.
+			{
+				displayName: 'Authentication',
+				name: 'authentication',
+				type: 'hidden',
+				default: 'zapleApi',
+				displayOptions: { hide: { resource: ['lead'] } },
+			},
+			{
+				displayName: 'Authentication',
+				name: 'authentication',
+				type: 'hidden',
+				default: 'zapleLeadsApi',
+				displayOptions: { show: { resource: ['lead'] } },
 			},
 			...batchDescription,
 			...catalogDescription,

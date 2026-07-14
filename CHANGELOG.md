@@ -2,6 +2,16 @@
 
 All notable changes to `n8n-nodes-zaple` are documented in this file.
 
+## 0.1.1 — 2026-07-14
+
+### Fixed
+
+- Executing any Zaple operation failed with `Could not get parameter "authentication"`: n8n's
+  declarative routing engine selects between multiple credentials only via an `authentication`
+  parameter, not via resource-scoped `displayOptions`. Credentials are now keyed on a hidden
+  `authentication` parameter that follows the selected resource automatically — no UI change.
+  If a workflow created with 0.1.0 still errors after updating, open it and save it once.
+
 ## 0.1.0 — 2026-07-14
 
 Initial release.
