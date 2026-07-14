@@ -2,6 +2,15 @@
 
 All notable changes to `n8n-nodes-zaple` are documented in this file.
 
+## 0.1.5 — 2026-07-14
+
+### Fixed
+
+- n8n verification pre-check failed on generated TypeScript declaration files:
+  `@n8n/scan-community-package` lints shipped `*.credentials.d.ts` files against the
+  `cred-filename-against-convention` rule. Declaration files are unnecessary for n8n node
+  packages and are no longer emitted or published.
+
 ## 0.1.4 — 2026-07-14
 
 Re-release of 0.1.3 (no functional changes) to refresh registry caches.
