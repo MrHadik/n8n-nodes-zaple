@@ -25,7 +25,9 @@
 			"dist/credentials/ZapleApi.credentials.js",
 			"dist/credentials/ZapleLeadsApi.credentials.js"
 		],
-		"nodes": []
+		"nodes": [
+			"dist/nodes/Zaple/Zaple.node.js"
+		]
 	},
 	"devDependencies": {
 		"@n8n/node-cli": "^0.23.0",
