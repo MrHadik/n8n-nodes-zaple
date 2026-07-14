@@ -27,10 +27,10 @@ jobs:
 
       - run: npm test
 
-      # Primary auth: npm Trusted Publisher (OIDC), configured on npmjs.com in Task 13 —
-      # once this repo + this workflow file are registered there, NO token or secret is needed.
-      # Fallback ONLY if Trusted Publishing cannot be configured: create an npm automation
-      # token, save it as the repository secret NPM_TOKEN, and uncomment the env block below.
+      # First publish uses the NPM_TOKEN repository secret (Trusted Publishing can only be
+      # configured on npmjs.com once the package exists). After v0.1.0 is live: register the
+      # Trusted Publisher (repo MrHadik/n8n-nodes-zaple, workflow publish.yml) on npmjs.com,
+      # then this env block can be removed and OIDC takes over.
       - run: npm run release
-        # env:
-        #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

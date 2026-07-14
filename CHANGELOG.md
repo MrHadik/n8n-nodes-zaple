@@ -2,7 +2,7 @@
 
 All notable changes to `n8n-nodes-zaple` are documented in this file.
 
-## 0.1.0 — 2026-07-13
+## 0.1.0 — 2026-07-14
 
 Initial release.
 
