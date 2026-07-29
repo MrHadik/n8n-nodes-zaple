@@ -2,6 +2,19 @@
 
 All notable changes to `n8n-nodes-zaple` are documented in this file.
 
+## 0.1.6 — 2026-07-14
+
+Addresses n8n manual-review feedback.
+
+### Fixed
+
+- **Zaple Trigger** now implements the `webhookMethods` lifecycle object
+  (`checkExists`/`create`/`delete`). Zaple has no webhook-registration API, so these are
+  intentional no-ops — n8n requires the object to be present on a webhook trigger node.
+- **Zaple Trigger** now has a `subtitle` showing the selected events.
+- JSON parsing helpers (`parseJsonObject`/`parseJsonArray`) now throw `NodeOperationError`
+  instead of a plain `Error`, so invalid-JSON messages surface correctly in the n8n UI.
+
 ## 0.1.5 — 2026-07-14
 
 ### Fixed

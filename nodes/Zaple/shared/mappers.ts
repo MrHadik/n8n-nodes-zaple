@@ -1,4 +1,4 @@
-import type { IDataObject } from 'n8n-workflow';
+import { NodeOperationError, type IDataObject, type INode } from 'n8n-workflow';
 
 export function buildNumberedFields(prefix: string, values: string[]): IDataObject {
 	const out: IDataObject = {};
@@ -8,28 +8,28 @@ export function buildNumberedFields(prefix: string, values: string[]): IDataObje
 	return out;
 }
 
-export function parseJsonObject(raw: string, fieldLabel: string): IDataObject {
+export function parseJsonObject(raw: string, fieldLabel: string, node: INode): IDataObject {
 	let parsed: unknown;
 	try {
 		parsed = JSON.parse(raw);
 	} catch {
-		throw new Error(`${fieldLabel} must be valid JSON`);
+		throw new NodeOperationError(node, `${fieldLabel} must be valid JSON`);
 	}
 	if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
-		throw new Error(`${fieldLabel} must be a JSON object`);
+		throw new NodeOperationError(node, `${fieldLabel} must be a JSON object`);
 	}
 	return parsed as IDataObject;
 }
 
-export function parseJsonArray(raw: string, fieldLabel: string): IDataObject[] {
+export function parseJsonArray(raw: string, fieldLabel: string, node: INode): IDataObject[] {
 	let parsed: unknown;
 	try {
 		parsed = JSON.parse(raw);
 	} catch {
-		throw new Error(`${fieldLabel} must be valid JSON`);
+		throw new NodeOperationError(node, `${fieldLabel} must be valid JSON`);
 	}
 	if (!Array.isArray(parsed)) {
-		throw new Error(`${fieldLabel} must be a JSON array`);
+		throw new NodeOperationError(node, `${fieldLabel} must be a JSON array`);
 	}
 	return parsed as IDataObject[];
 }

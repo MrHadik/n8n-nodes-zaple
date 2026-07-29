@@ -41,7 +41,7 @@ export async function mapBatchContacts(
 	const inputMode = this.getNodeParameter('inputMode', 'ui') as string;
 	if (inputMode === 'json') {
 		const raw = this.getNodeParameter('contactsJson', '[]') as string;
-		mergeBody(requestOptions, { contacts: parseJsonArray(raw, 'Contacts (JSON)') });
+		mergeBody(requestOptions, { contacts: parseJsonArray(raw, 'Contacts (JSON)', this.getNode()) });
 		return requestOptions;
 	}
 	const contactsUi = this.getNodeParameter('contactsUi', {}) as {
@@ -62,12 +62,16 @@ export async function mapLeadFields(
 ): Promise<IHttpRequestOptions> {
 	const additionalFields = this.getNodeParameter('additionalFields', {}) as IDataObject;
 	if (typeof additionalFields.metaJson === 'string' && additionalFields.metaJson.trim() !== '') {
-		mergeBody(requestOptions, { meta: parseJsonObject(additionalFields.metaJson, 'Meta (JSON)') });
+		mergeBody(requestOptions, {
+			meta: parseJsonObject(additionalFields.metaJson, 'Meta (JSON)', this.getNode()),
+		});
 	}
 	const customFieldsMode = this.getNodeParameter('customFieldsMode', 'none') as string;
 	if (customFieldsMode === 'json') {
 		const raw = this.getNodeParameter('customFieldsJson', '{}') as string;
-		mergeBody(requestOptions, { custom_fields: parseJsonObject(raw, 'Custom Fields (JSON)') });
+		mergeBody(requestOptions, {
+			custom_fields: parseJsonObject(raw, 'Custom Fields (JSON)', this.getNode()),
+		});
 	} else if (customFieldsMode === 'ui') {
 		const customFieldsUi = this.getNodeParameter('customFieldsUi', {}) as {
 			field?: Array<{ key: string; value: string }>;
@@ -109,9 +113,10 @@ export function sendJsonField(
 	): Promise<IHttpRequestOptions> {
 		const raw = this.getNodeParameter(paramName, '') as string;
 		if (raw && raw.trim() !== '') {
+			const node = this.getNode();
 			mergeBody(requestOptions, {
 				[bodyKey]:
-					kind === 'object' ? parseJsonObject(raw, label) : parseJsonArray(raw, label),
+					kind === 'object' ? parseJsonObject(raw, label, node) : parseJsonArray(raw, label, node),
 			});
 		}
 		return requestOptions;

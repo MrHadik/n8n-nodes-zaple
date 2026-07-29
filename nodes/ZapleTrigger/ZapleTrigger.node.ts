@@ -1,5 +1,6 @@
 import {
 	NodeConnectionTypes,
+	type IHookFunctions,
 	type INodeType,
 	type INodeTypeDescription,
 	type IWebhookFunctions,
@@ -17,6 +18,7 @@ export class ZapleTrigger implements INodeType {
 		icon: { light: 'file:../../icons/zaple.svg', dark: 'file:../../icons/zaple.dark.svg' },
 		group: ['trigger'],
 		version: 1,
+		subtitle: '={{ $parameter["events"].join(", ") }}',
 		description: 'Starts the workflow when Zaple webhook events arrive',
 		defaults: { name: 'Zaple Trigger' },
 		inputs: [],
@@ -68,6 +70,23 @@ export class ZapleTrigger implements INodeType {
 				],
 			},
 		],
+	};
+
+	// Zaple has no webhook-management API — the URL is configured manually in
+	// Zaple → Settings → Webhooks, so these lifecycle hooks are intentional no-ops.
+	// n8n requires the object to be present for a webhook trigger node.
+	webhookMethods = {
+		default: {
+			async checkExists(this: IHookFunctions): Promise<boolean> {
+				return true;
+			},
+			async create(this: IHookFunctions): Promise<boolean> {
+				return true;
+			},
+			async delete(this: IHookFunctions): Promise<boolean> {
+				return true;
+			},
+		},
 	};
 
 	async webhook(this: IWebhookFunctions): Promise<IWebhookResponseData> {
