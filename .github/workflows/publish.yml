@@ -27,10 +27,8 @@ jobs:
 
       - run: npm test
 
-      # First publish uses the NPM_TOKEN repository secret (Trusted Publishing can only be
-      # configured on npmjs.com once the package exists). After v0.1.0 is live: register the
-      # Trusted Publisher (repo MrHadik/n8n-nodes-zaple, workflow publish.yml) on npmjs.com,
-      # then this env block can be removed and OIDC takes over.
+      # Publishes via npm Trusted Publishing (OIDC) — no token. The trusted publisher
+      # (GitHub Actions, owner MrHadik, repo n8n-nodes-zaple, workflow publish.yml) is
+      # registered on npmjs.com, and `id-token: write` above lets the job mint the OIDC
+      # credential npm verifies. This also satisfies npm's 2FA-for-writes policy.
       - run: npm run release
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
