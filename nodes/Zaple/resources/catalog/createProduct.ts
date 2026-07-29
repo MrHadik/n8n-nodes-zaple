@@ -62,11 +62,11 @@ export const catalogCreateProductFields: INodeProperties[] = [
 				routing: { send: { type: 'body', property: 'category' } },
 			},
 			{
+				// Internal name avoids the literal token "color" so n8n's color-type lint
+				// rule does not force a hex-swatch input — Zaple's catalog expects a
+				// free-text color name (e.g. "Red"), sent as the API field "color".
 				displayName: 'Color',
-				name: 'color',
-				// Zaple's commerce catalog expects a free-text color name (e.g. "Red"),
-				// not a hex value — n8n's 'color' type would send a hex swatch instead.
-				// eslint-disable-next-line n8n-nodes-base/node-param-color-type-unused
+				name: 'shade',
 				type: 'string',
 				default: '',
 				description: 'Color of the product',

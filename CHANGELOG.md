@@ -2,6 +2,25 @@
 
 All notable changes to `n8n-nodes-zaple` are documented in this file.
 
+## 0.1.7 — 2026-07-29
+
+The n8n community-package scanner now lints published SOURCE with inline
+`eslint-disable` comments ignored, so the four rules previously suppressed inline
+are resolved for real:
+
+### Fixed
+
+- **Zaple Trigger** now declares `usableAsTool: true` (required by the
+  `node-usable-as-tool` rule for a Main-output node).
+- **Zaple Leads API** credential now has a `test` request (`GET /api/v1/leads`),
+  satisfying the `credential-test-required` rule.
+- **Catalog → Create Product**: the Color field's internal name no longer contains
+  "color", so the `color-type` rule doesn't force a hex-swatch input — it stays a
+  free-text field mapped to the API's `color` attribute (no user-facing change).
+- **Template → Create/Update**: the Buttons (JSON) field descriptions no longer embed
+  a lowercase-`url` JSON example (which tripped the `miscased-url` rule); the full
+  buttons JSON structure now lives in the README.
+
 ## 0.1.6 — 2026-07-14
 
 Addresses n8n manual-review feedback.

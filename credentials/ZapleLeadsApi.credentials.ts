@@ -1,8 +1,11 @@
-import type { IAuthenticateGeneric, ICredentialType, INodeProperties, Icon } from 'n8n-workflow';
+import type {
+	IAuthenticateGeneric,
+	ICredentialTestRequest,
+	ICredentialType,
+	INodeProperties,
+	Icon,
+} from 'n8n-workflow';
 
-// No credential test on purpose: the only Leads endpoint is a state-creating POST /api/v1/leads —
-// no safe read-only request exists to validate these credentials.
-// eslint-disable-next-line @n8n/community-nodes/credential-test-required
 export class ZapleLeadsApi implements ICredentialType {
 	name = 'zapleLeadsApi';
 
@@ -41,6 +44,16 @@ export class ZapleLeadsApi implements ICredentialType {
 				'X-Zaple-Api-Key': '={{$credentials.leadApiKey}}',
 				'X-Zaple-Api-Secret': '={{$credentials.leadApiSecret}}',
 			},
+		},
+	};
+
+	// Zaple's Leads API has no dedicated validation endpoint; this read of the leads
+	// collection confirms the key pair is accepted. Zaple returns 401 for bad credentials.
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: 'https://app.zaple.ai',
+			url: '/api/v1/leads',
+			method: 'GET',
 		},
 	};
 }

@@ -69,10 +69,8 @@ export const templateCreateFields: INodeProperties[] = [
 		name: 'buttonsJson',
 		type: 'json',
 		default: '',
-		// Example JSON must show the API's lowercase 'url' type/key verbatim.
-		// eslint-disable-next-line n8n-nodes-base/node-param-description-miscased-url
 		description:
-			'JSON array of buttons, for example: [{"type":"quick_reply","replies":[{"text":"Yes"}]},{"type":"url","websites":[{"text":"Visit","url":"https://example.com"}]}]',
+			'Message buttons as a JSON array. Supported button types: quick reply, URL, phone number, copy offer code, and catalog. See the package README for the exact JSON structure.',
 		displayOptions: { show: { resource: ['template'], operation: ['create'] } },
 	},
 	{

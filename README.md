@@ -152,6 +152,19 @@ Passing the wrong kind of ID typically produces a "not found" or validation erro
 
 The **Template Arguments** list fills the template's `{{1}}`, `{{2}}`, … placeholders **in order** — the node sends them to Zaple as `template_argument1`, `template_argument2`, and so on. Likewise, **Quick Reply Payloads** are sent as `quick_reply_payload1..N` in order.
 
+### Template buttons (JSON)
+
+Template **Create** and **Update** take a **Buttons (JSON)** field — a JSON array of button objects. The shape varies by button type:
+
+```json
+[
+  { "type": "quick_reply", "replies": [{ "text": "Yes" }] },
+  { "type": "url", "websites": [{ "text": "Visit", "url": "https://example.com" }] }
+]
+```
+
+Other supported `type` values are `phone_number`, `copy_offer_code`, and `catalog`. Use the exact lowercase `type` and key names shown above — they are passed to Zaple verbatim.
+
 ### Sending media
 
 Media (image / audio / video / document) can be provided in two ways:
